@@ -19,6 +19,7 @@ app.post('/url/telegram', (req, res) => {
     res.send('Pasa pasa, no tengas miedo🤡');
 })
 
+
 //COMANDOS
 //Al escribir /test en telegram el bot me contestará con ¿Sabe una cosa?
 bot.command('test', async (ctx) => {
@@ -77,7 +78,7 @@ bot.command('sticker', async (ctx) => {
 })
 
 //Si le envias un mensaje contexta con lo siguiente el texto que le pongas.
-bot.on('text', async (ctx) => {
+/* bot.on('text', async (ctx) => {
     const client = new Wit({
         accessToken: process.env.WIT_TOKEN,
         logger: new log.Logger(logger.DEBUG)
@@ -91,6 +92,15 @@ bot.on('text', async (ctx) => {
     }
 
     ctx.reply(`La categoria es: ${response.intents[0].name}`)
+}) */
+
+bot.on('text', async (ctx) => {
+
+    const frasecitas = new Array('Si tienes novia debes serle fiel, y en tu caso, dar las gracias.', 'No eres un completo inútil, al menos sirves de mal ejemplo', 'Sabias que el matrimonio es la principal causa del divorcio?', 'Hay muchas cosas en la vida más importantes que el dinero. ¡Pero cuestan tanto!', ' El verdadero amor sólo se presenta una vez en la vida… y luego ya no hay quien se lo quite de encima', 'Fuera del perro, un libro es probablemente el mejor amigo del hombre, y dentro del perro probablemente está demasiado oscuro para leer', '¿Usted piensa antes de hablar o habla tras pensar?', 'Hay que fabricar máquinas que nos permitan seguir fabricando máquinas, porque lo que no va a hacer nunca la máquina es fabricar máquinas', 'Sabes contar? Pues no cuentes conmigo')
+    cont = Math.floor(Math.random() * frasecitas.length)
+    ctx.reply(frasecitas[cont])
+
+
 })
 
 app.listen(process.env.PORT || 3000, () => {
